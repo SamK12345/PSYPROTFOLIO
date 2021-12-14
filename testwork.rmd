@@ -1,0 +1,49 @@
+He uses the following R code: 
+```{r}
+socialMedia<- c(3,4,7,6,5)
+
+noSocialMedia<- c(6,7,9,8,9)
+
+socialDat<-cbind.data.frame(socialMedia, noSocialMedia)
+```
+
+```{r}
+t.test(socialDat$socialMedia, socialDat$noSocialMedia, var.equal=TRUE)
+```
+
+```{r}
+serviceDog<- c(7,8,3,4,7,4)
+
+noServiceDog<-c(9,7,6,5,9,6)
+
+dogData<- cbind.data.frame(serviceDog, noServiceDog)
+
+t.test(dogData$serviceDog, dogData$noServiceDog, paired = TRUE, alternative = "greater")
+```
+
+
+```{r}
+STDEV <- 1.00
+n <- 15
+pop_avg <- 9.15
+obs_avg <- 8.25
+
+se <- (STDEV/sqrt(n))
+se
+ttestresult <- ((obs_avg - pop_avg)/se)
+
+
+-qt(0.05, 14)
+pt(0.05, 14)
+ttestresult
+
+```
+
+```{r}
+qt(0.025, 24)
+
+```
+
+Daivik, who works at the National Park Service, is interested in determining if National Parks, on average, have had more visitors since the pandemic began. Typically, a national park has an average of 3500 people visit in a day with a standard deviation of 2500. A sample of 25 parks has had an average of 4000 visitors this summer.  
+
+```{r}
