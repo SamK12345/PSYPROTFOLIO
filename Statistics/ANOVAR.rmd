@@ -1,0 +1,83 @@
+# ANOVA - Rcode 
+## Creating a 'long table'
+```{r}
+library(tidyr)
+data_long <- gather(data_frame)
+print(data_long)
+```
+
+## ANVOA function 
+```{r}
+anova <- aov(dv~iv
+    data=managerData )
+```
+
+## Tukey HSD 
+```{r}
+TukeyHSD(anovaMODEL)
+```
+
+## Effect Sizes
+```{r}
+library(lsr)
+etaSquared(anovaMODEL)
+```
+
+## General NHST-test code 
+```{r}
+alpha = groups * 0.05
+#Set critical area as 0.05 * crtitcal area. 
+qt(alpha, df)
+#note if looking for greater do 0.95, if less do 0.05, (p's/alphas are probablity scores)
+#nomral q (not needed usually)
+qnorm(alpha)
+```
+```{r}
+pt(t-stat, df, lower.tail = TRUE/FALSE)
+# set lower.tail to value needed 
+# if two tail is needed use this trick (notice the negative out front)
+pt(-t-stat, df) + pt(t-stat, df, lower.tail = FALSE)
+```
+
+
+# Example
+An immimmunologist wants to measure the difference in white blood cell count with
+various different dieases. (measured in ppm) He does this with 5 different patietns per
+group.
+
+## Data 
+```{r}
+common_cold <-c(4.503, 5.102, 4.20, 4.404, 2.034 )
+influenza <-c(6.050, 4.450, 8.505, 6.605, 4.0500)
+pneumonia <-c(7.060, 5.403, 9.493, 4.394, 6.505)
+disease_data <- cbind.data.frame(common_cold, influenza, pneumonia)
+```
+
+## Long table 
+
+```{r}
+library(tidyr)
+disease_long = gather(disease_data)
+disease_long
+table(disease_long)
+```
+## ANOVA test
+```{r}
+anova_model <- aov(value~key, data=disease_long)
+summary(anova_model)
+```
+
+## Intepreation, as the p-value is greater than 0.05, and the F value is greater than the critical value, there is a  
+sigfigant reusult across all results
+
+## HSD testing
+```{r}
+TukeyHSD(anova_model)
+```
+The greatest difference is between the pneumonia and infeluenze group, with a p-value of 0.08
+
+## Effect Sizes
+```{r}
+library(lsr)
+etaSquared(anova_model)
+```
