@@ -1,4 +1,4 @@
-# Statistics  REMEMBER TO IMPORT RCODE AT THE END1
+# Statistics 
 ## Guide to reading, 
 Theorectally text which is [[linked]], you can click on to jump to said file.  Rcode files will be referecend at end of correponding section, often contain examples, and interpretation
  both plain HTML markdown and .rmd files 
